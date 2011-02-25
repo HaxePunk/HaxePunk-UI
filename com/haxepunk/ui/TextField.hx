@@ -13,9 +13,9 @@ import com.haxepunk.graphics.Image;
 
 class TextField extends TextArea
 {	
-	public function new(x:Float = 0, y:Float = 0, width:Int = 1)
+	public function new(x:Float = 0, y:Float = 0, width:Int = 1, text:String = "")
 	{
-		super(x, y, width, 30);
+		super(x, y, width, 30, text);
 		_textField.multiline = false;
 		_textField.wordWrap = false;
 	}

@@ -17,9 +17,9 @@ class TextArea extends Label
 	
 	public var padding:Int;
 	
-	public function new(x:Float = 0, y:Float = 0, width:Int = 1, height:Int = 1)
+	public function new(x:Float = 0, y:Float = 0, width:Int = 1, height:Int = 1, text:String = "")
 	{
-		super("Name", x, y, width, height, TextFormatAlign.LEFT);
+		super(text, x, y, width, height, TextFormatAlign.LEFT);
 		padding = 4;
 		
 		_textField.type = TextFieldType.INPUT;
