@@ -117,6 +117,38 @@ class Panel extends Control
 	//Helper functions
 	
 	/**
+	 * Move children on the x-axis
+	 * @param	value the position to move to
+	 * @return	the final position
+	 */
+	override private function setX(value:Float):Float {
+		var delta:Float = value - _x;
+		var child:Entity;
+		for (child in children)
+		{
+			child.x += delta;
+		}
+		_x = value;
+		return _x;
+	}
+	
+	/**
+	 * Move children on the y-axis
+	 * @param	value	the position to move to
+	 * @return	the final position
+	 */
+	override private function setY(value:Float):Float {
+		var delta:Float = value - _y;
+		var child:Entity;
+		for (child in children)
+		{
+			child.y += delta;
+		}
+		_y = value;
+		return _y;
+	}
+	
+	/**
 	 * Please make sure to read this documentation in full.
 	 * Setting this to a number will edit the x of the panel.
 	 * Setting it to an object will change child x values.
@@ -126,13 +158,13 @@ class Panel extends Control
 	 * 		x:	Number to set the child's x to
 	 * 		get:	Pass a Number variable to this for it to set it to the specified child's x value.
 	 */
-	public var relativeX(null, relativeX):Dynamic;
+	public var relativeX(null, setRelativeX):Dynamic;
 	private function setRelativeX(value:Dynamic):Dynamic
 	{
 		if (Std.is(value, Float))
 		{
 			// set this object's x
-			x = cast(value, Float);
+			_x = cast(value, Float);
 		}
 		else
 		{
@@ -194,7 +226,7 @@ class Panel extends Control
 		if (Std.is(value, Float))
 		{
 			// set this object's y
-			y = cast(value, Float);
+			_y = cast(value, Float);
 		}
 		else
 		{
