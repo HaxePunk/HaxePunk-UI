@@ -13,10 +13,10 @@ import com.haxepunk.graphics.Image;
 
 class TextField extends TextArea
 {	
-	public function new(x:Float = 0, y:Float = 0, width:Int = 1, height:Int = 1)
+	public function new(x:Float = 0, y:Float = 0, width:Int = 1)
 	{
-		super(x, y, width, height);
-		this._textField.multiline = false;
+		super(x, y, width, 30);
+		_textField.multiline = false;
 		_textField.wordWrap = false;
 	}
 }

@@ -22,12 +22,12 @@ class Button extends Control
 	/**
 	 * This function will be called when the button is pressed. 
 	 */		
-	public dynamic function onClick() { }
+	public dynamic function onClick(button:Button) { }
 	
 	/**
 	 * This function will be called when the mouse overs the button. 
 	 */		
-	public dynamic function onHover() { }
+	public dynamic function onHover(button:Button) { }
 	
 	/**
 	 * Graphic of the button when active and not pressed nor overed.
@@ -70,10 +70,10 @@ class Button extends Control
 		
 		padding = 4;
 		
-		normal = new NineSlice(this.width, this.height, new Rectangle(96, 32, 8, 8));
-		hover = new NineSlice(this.width, this.height, new Rectangle(120, 32, 8, 8));
-		down = new NineSlice(this.width, this.height, new Rectangle(144, 32, 8, 8));
-		inactive = new NineSlice(this.width, this.height, new Rectangle(168, 32, 8, 8));
+		normal = new NineSlice(this.width, this.height, new Rectangle(0, 96, 8, 8));
+		hover = new NineSlice(this.width, this.height, new Rectangle(24, 96, 8, 8));
+		down = new NineSlice(this.width, this.height, new Rectangle(48, 96, 8, 8));
+		inactive = new NineSlice(this.width, this.height, new Rectangle(96, 96, 8, 8));
 		
 		super(x, y, this.width, this.height);
 		setHitbox(this.width, this.height);
@@ -93,10 +93,10 @@ class Button extends Control
 	}
 	
 	public var isActive(getActive, setActive):Bool;
-	private function getActive():Bool { return (graphic == inactive) ? false : true; }
+	private function getActive():Bool { return _active; }
 	private function setActive(value:Bool):Bool {
-		graphic = value ? normal : inactive;
-		return value;
+		_active = value;
+		return _active;
 	}
 	
 	override private function setX(value:Float):Float
@@ -116,7 +116,7 @@ class Button extends Control
 	 */
 	override public function update()
 	{
-		if (graphic != inactive) {
+		if (_active) {
 			super.update();
 			
 			if(collidePoint(x, y, Input.mouseX, Input.mouseY))
@@ -131,7 +131,7 @@ class Button extends Control
 					
 					if(!_overCalled)
 					{
-						if(onHover != null) onHover();
+						if(onHover != null) onHover(this);
 						_overCalled = true;
 					}
 				}
@@ -142,12 +142,16 @@ class Button extends Control
 				_overCalled = false;
 			}
 		}
+		else
+		{
+			graphic = inactive;
+		}
 	}
 	
 	public function onMouseUp(e:MouseEvent = null)
 	{
 		if(graphic == inactive || !Input.mouseReleased) return;
-		if(collidePoint(x, y, Input.mouseX, Input.mouseY)) onClick();
+		if(collidePoint(x, y, Input.mouseX, Input.mouseY)) onClick(this);
 	}
 	
 	/**
@@ -175,4 +179,5 @@ class Button extends Control
 	/** @private */ private var _overCalled:Bool;
 	/** @private */ private var _padding:Int;
 	/** @private */ private var _align:TextFormatAlign;
+	/** @private */ private var _active:Bool;
 }

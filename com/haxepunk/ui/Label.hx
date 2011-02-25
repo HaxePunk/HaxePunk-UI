@@ -26,13 +26,19 @@ class Label extends Control
 	
 	public function new(text:String = "", x:Float = 0, y:Float = 0, width:Int = 0, height:Int = 0, ?align:TextFormatAlign)
 	{
-		var format:TextFormat = new TextFormat("default", Label.defaultSize, Label.defaultColor);
-		format.align = TextFormatAlign.CENTER;
-		if (align != null) format.align = align;
+		_format = new TextFormat("default", Label.defaultSize, Label.defaultColor);
+		
+		if (align == null)
+		{
+			if (width == 0)
+				_format.align = TextFormatAlign.LEFT;
+			else
+				_format.align = TextFormatAlign.CENTER;
+		}
+		else _format.align = align;
 		
 		_textField = new TextField();
-		_textField.text = text;
-		_textField.setTextFormat(format);
+		this.text = text;
 		_textField.selectable = false;
 		_textField.embedFonts = true;
 		if (width != 0) _textField.width = width;
@@ -41,18 +47,19 @@ class Label extends Control
 		_textField.background = Label.defaultBackground;
 		_textField.maxChars = 0;
 		_textField.useRichTextClipboard = true;
-		_textField.wordWrap = true;
-		_textField.multiline = true;
+		_textField.wordWrap = false;
+		_textField.multiline = false;
 		_textField.x = x;
 		_textField.y = y;
 		
-		if (width == 0) width = Std.int(_textField.textWidth);
-		if (height == 0) height = Std.int(_textField.textHeight);
+		if (width == 0) width = Std.int(_textField.textWidth + 4);
+		if (height == 0) height = Std.int(_textField.textHeight + 4);
 		
 		super(x, y, width, height);
 		
-		_renderRect = new Rectangle(0, 0, _textField.width, _textField.height);
-		_textBuffer = new BitmapData(Std.int(_textField.width), Std.int(_textField.height), true, 0x00000000);
+		_textField.width = width; // have to reset the width so everything shows...
+		_renderRect = new Rectangle(0, 0, width, height);
+		_textBuffer = new BitmapData(width, height, true, 0x00000000);
 		graphic = new Stamp(_textBuffer);
 	}
 	
@@ -67,7 +74,10 @@ class Label extends Control
 	public var text(getText, setText):String;
 	private function getText():String { return _textField.text; }
 	private function setText(value:String):String {
+		var color = _textField.textColor;
 		_textField.text = value;
+		_textField.setTextFormat(_format);
+		_textField.textColor = color;
 		return value;
 	}
 	
@@ -112,4 +122,5 @@ class Label extends Control
 	private var _textField:TextField;
 	private var _renderRect:Rectangle;
 	private var _textBuffer:BitmapData;
+	private var _format:TextFormat;
 }
