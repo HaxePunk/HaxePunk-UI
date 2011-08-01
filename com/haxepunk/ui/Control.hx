@@ -9,12 +9,10 @@ import flash.display.BitmapData;
  * @author Rolpege
  */
 
-class DefaultSkin extends BitmapData { }
-
 class Control extends Entity
 {
 	
-	public static var defaultSkin:BitmapData = new DefaultSkin(0, 0);
+	public static var defaultSkin:BitmapData = (new DefaultSkin()).bitmapData;
 	
 	/** class constructor
 	 * @param x - position of the component on the X axis
@@ -29,5 +27,30 @@ class Control extends Entity
 		_skin = (skin != null) ? skin : defaultSkin;
 	}
 	
+	public override function added()
+	{
+		_lastX = setX(x);
+		_lastY = setY(y);
+	}
+	
+	override public function update()
+	{
+		if (x != _lastX) _lastX = setX(x);
+		if (y != _lastY) _lastY = setY(y);
+		super.update();
+	}
+	
+	private function setX(value:Float):Float
+	{
+		return value;
+	}
+	
+	private function setY(value:Float):Float
+	{
+		return value;
+	}
+	
+	private var _lastX:Float;
+	private var _lastY:Float;
 	private var _skin:BitmapData;
 }

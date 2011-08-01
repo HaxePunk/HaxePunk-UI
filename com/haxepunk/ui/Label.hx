@@ -9,7 +9,6 @@ import flash.text.TextFormatAlign;
 import flash.text.TextFormat;
 
 import com.haxepunk.HXP;
-import com.haxepunk.graphics.Image;
 import com.haxepunk.graphics.Stamp;
 
 /**
@@ -18,7 +17,7 @@ import com.haxepunk.graphics.Stamp;
  */
 
 class Label extends Control
-{	
+{
 	public static var defaultSize:Float = 16;
 	public static var defaultColor:Int = 0xff33cc;
 	public static var defaultBackgroundColor:Int = 0x202020;

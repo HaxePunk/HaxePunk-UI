@@ -15,7 +15,7 @@ import com.haxepunk.HXP;
 class Panel extends Control
 {
 	
-	private var children:Array<Entity>;
+	private var children:Array<Control>;
 	
 	private var oldX:Float;
 	private var oldY:Float;
@@ -32,7 +32,7 @@ class Panel extends Control
 	 */
 	public function new(x:Float = 0, y:Float = 0, width:Int = 48, height:Int = 48, ?skin:BitmapData)
 	{
-		children = new Array<Entity>();
+		children = new Array<Control>();
 		
 		super(x, y, width, height, skin);
 		graphic = new NineSlice(width, height, new Rectangle(48, 0, 16, 16), _skin);
@@ -123,10 +123,9 @@ class Panel extends Control
 	 */
 	override private function setX(value:Float):Float {
 		var delta:Float = value - _x;
-		var child:Entity;
 		for (child in children)
 		{
-			child.x += delta;
+			child.setX(child.x + delta);
 		}
 		_x = value;
 		return _x;
@@ -139,10 +138,9 @@ class Panel extends Control
 	 */
 	override private function setY(value:Float):Float {
 		var delta:Float = value - _y;
-		var child:Entity;
 		for (child in children)
 		{
-			child.y += delta;
+			child.setY(child.y + delta);
 		}
 		_y = value;
 		return _y;
