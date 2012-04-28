@@ -11,9 +11,9 @@ import flash.display.BitmapData;
 
 class Control extends Entity
 {
-	
-	public static var defaultSkin:BitmapData = (new DefaultSkin()).bitmapData;
-	
+
+	public static var defaultSkin:BitmapData = nme.Assets.getBitmapData("gfx/ui/defaultSkin.png");
+
 	/** class constructor
 	 * @param x - position of the component on the X axis
 	 * @param y - position of the component on the Y axis
@@ -26,30 +26,30 @@ class Control extends Entity
 		this.height = height;
 		_skin = (skin != null) ? skin : defaultSkin;
 	}
-	
+
 	public override function added()
 	{
 		_lastX = setX(x);
 		_lastY = setY(y);
 	}
-	
+
 	override public function update()
 	{
 		if (x != _lastX) _lastX = setX(x);
 		if (y != _lastY) _lastY = setY(y);
 		super.update();
 	}
-	
+
 	private function setX(value:Float):Float
 	{
 		return value;
 	}
-	
+
 	private function setY(value:Float):Float
 	{
 		return value;
 	}
-	
+
 	private var _lastX:Float;
 	private var _lastY:Float;
 	private var _skin:BitmapData;
