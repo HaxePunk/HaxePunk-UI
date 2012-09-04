@@ -12,7 +12,16 @@ import flash.display.BitmapData;
 class Control extends Entity
 {
 
-	public static var defaultSkin:BitmapData = nme.Assets.getBitmapData("gfx/ui/defaultSkin.png");
+	public static var defaultSkin(get_defaultSkin, set_defaultSkin):BitmapData;
+	static function get_defaultSkin() {
+		if (defaultSkin != null) 
+			return defaultSkin;
+		else
+			return defaultSkin = nme.Assets.getBitmapData("gfx/ui/defaultSkin.png");
+	}
+	static function set_defaultSkin(v) {
+		return defaultSkin = v;
+	}
 
 	/** class constructor
 	 * @param x - position of the component on the X axis
