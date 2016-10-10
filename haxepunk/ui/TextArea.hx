@@ -37,16 +37,16 @@ class TextArea extends Label
 	public function new(text:String = "", x:Float = 0, y:Float = 0, width:Int = 0, height:Int = 0, skin:Skin = null)
 	{
 		super(text, x, y, width, height, skin);
-		punkText._field.selectable = true;
-		punkText._field.type = TextFieldType.INPUT;
-		punkText._field.multiline = true;
-		//punkText.width = (width != 0) ? width : 240;
-		//punkText.height = (height != 0) ? height : 36;
-		punkText._field.x = x;
-		punkText._field.y = y;
-		punkText.resizable = false;
-		punkText.wordWrap = true;
-		punkText._field.alpha = 0;
+		textControl._field.selectable = true;
+		textControl._field.type = TextFieldType.INPUT;
+		textControl._field.multiline = true;
+		//textControl.width = (width != 0) ? width : 240;
+		//textControl.height = (height != 0) ? height : 36;
+		textControl._field.x = x;
+		textControl._field.y = y;
+		textControl.resizable = false;
+		textControl.wordWrap = true;
+		textControl._field.alpha = 0;
 	}
 
 	/**
@@ -57,10 +57,10 @@ class TextArea extends Label
 	{
 		if (skin.textArea == null) return;
 
-		punkText = Label.getTextFromLabelOptions(skin.textArea.labelProperties, textString);
+		textControl = Label.getTextFromLabelOptions(skin.textArea.labelProperties, textString);
 		bg = getSkinImage(skin.textArea.background);
 		addGraphic(bg);
-		addGraphic(punkText);
+		addGraphic(textControl);
 	}
 
 	override public function update():Void
@@ -69,14 +69,14 @@ class TextArea extends Label
 
 		if (!initialized)
 		{
-			HXP.stage.addChild(punkText._field);
-			punkText._field.addEventListener(FocusEvent.FOCUS_IN, onFocusInText, false, 0, true);
-			punkText._field.addEventListener(FocusEvent.FOCUS_OUT, onFocusOutText, false, 0, true);
+			HXP.stage.addChild(textControl._field);
+			textControl._field.addEventListener(FocusEvent.FOCUS_IN, onFocusInText, false, 0, true);
+			textControl._field.addEventListener(FocusEvent.FOCUS_OUT, onFocusOutText, false, 0, true);
 			initialized = true;
 		}
 
-		punkText._field.x = x - Std.int(HXP.camera.x);
-		punkText._field.y = y - Std.int(HXP.camera.y);
+		textControl._field.x = x - Std.int(HXP.camera.x);
+		textControl._field.y = y - Std.int(HXP.camera.y);
 
 		if (bg != null)
 		{
@@ -93,7 +93,7 @@ class TextArea extends Label
 	function onFocusOutText(e:FocusEvent):Void
 	{
 		updateTextBuffer = false;
-		punkText.updateTextBuffer();
+		textControl.updateTextBuffer();
 	}
 
 	override public function added():Void
@@ -104,9 +104,9 @@ class TextArea extends Label
 
 		if (HXP.stage != null)
 		{
-			HXP.stage.addChild(punkText._field);
-			punkText._field.addEventListener(FocusEvent.FOCUS_IN, onFocusInText, false, 0, true);
-			punkText._field.addEventListener(FocusEvent.FOCUS_OUT, onFocusOutText, false, 0, true);
+			HXP.stage.addChild(textControl._field);
+			textControl._field.addEventListener(FocusEvent.FOCUS_IN, onFocusInText, false, 0, true);
+			textControl._field.addEventListener(FocusEvent.FOCUS_OUT, onFocusOutText, false, 0, true);
 			initialized = true;
 		}
 	}
@@ -114,20 +114,20 @@ class TextArea extends Label
 	override public function removed():Void
 	{
 		super.removed();
-		punkText._field.removeEventListener(FocusEvent.FOCUS_IN, onFocusInText);
-		punkText._field.removeEventListener(FocusEvent.FOCUS_OUT, onFocusOutText);
-		HXP.stage.removeChild(punkText._field);
+		textControl._field.removeEventListener(FocusEvent.FOCUS_IN, onFocusInText);
+		textControl._field.removeEventListener(FocusEvent.FOCUS_OUT, onFocusOutText);
+		HXP.stage.removeChild(textControl._field);
 	}
 
 	override function set_x(value:Float):Float
 	{
-		if (punkText != null) punkText._field.x = value * HXP.screen.fullScaleX;
+		if (textControl != null) textControl._field.x = value * HXP.screen.fullScaleX;
 		return super.set_x(value);
 	}
 
 	override function set_y(value:Float):Float
 	{
-		if (punkText != null) punkText._field.y = value * HXP.screen.fullScaleY;
+		if (textControl != null) textControl._field.y = value * HXP.screen.fullScaleY;
 		return super.set_y(value);
 	}
 

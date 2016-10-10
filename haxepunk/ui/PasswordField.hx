@@ -22,7 +22,7 @@ class PasswordField extends TextField
 	{
 		super(text, x, y, width, skin);
 
-		punkText._field.displayAsPassword = true;
+		textControl._field.displayAsPassword = true;
 	}
 
 	/**
@@ -33,11 +33,11 @@ class PasswordField extends TextField
 	{
 		if (skin.passwordField == null) return;
 
-		punkText = Label.getTextFromLabelOptions(skin.label.labelProperties, textString);
+		textControl = Label.getTextFromLabelOptions(skin.label.labelProperties, textString);
 		bg = getSkinImage(skin.passwordField.background);
 
 		addGraphic(bg);
-		addGraphic(punkText);
+		addGraphic(textControl);
 	}
 }
 

@@ -65,7 +65,8 @@ class LayoutGroup extends EntityList<Entity>
 	}
 
 	/**
-	 * Add an Entity.
+	 * Add an Entity. If the Entity isn't a LayoutGroup, it will be wrapped
+	 * in one, so the return value will always have a `layoutData` field.
 	 */
 	override public function add(object:Entity):LayoutGroup
 	{
@@ -176,11 +177,6 @@ class LayoutGroup extends EntityList<Entity>
 				default: {}
 			}
 		}
-	}
-
-	override public function added()
-	{
-		super.added();
 	}
 
 	override function get_width() return this.width;

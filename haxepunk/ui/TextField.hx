@@ -20,8 +20,8 @@ class TextField extends TextArea
 	public function new(text:String = "", x:Float = 0, y:Float = 0, width:Int = 0, skin:Skin = null)
 	{
 		super(text, x, y, (width != 0) ? width:240, 20, skin);
-		punkText._field.multiline = false;
-		punkText._field.wordWrap = false;
+		textControl._field.multiline = false;
+		textControl._field.wordWrap = false;
 	}
 
 	/**
@@ -32,10 +32,10 @@ class TextField extends TextArea
 	{
 		if (skin.textField == null) return;
 
-		punkText = Label.getTextFromLabelOptions(skin.label.labelProperties, textString);
+		textControl = Label.getTextFromLabelOptions(skin.label.labelProperties, textString);
 		bg = getSkinImage(skin.textField.background);
 
 		addGraphic(bg);
-		addGraphic(punkText);
+		addGraphic(textControl);
 	}
 }

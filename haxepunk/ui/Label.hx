@@ -41,7 +41,7 @@ class Label extends UIComponent
 	/**
 	 * The label's text wrapped as an Image
 	 */
-	public var punkText:Text;
+	public var textControl:Text;
 
 	/**
 	 * The label's text
@@ -72,38 +72,38 @@ class Label extends UIComponent
 	{
 		if (skin.label == null) return;
 
-		punkText = getTextFromLabelOptions(skin.label.labelProperties, textString);
-		graphic = punkText;
+		textControl = getTextFromLabelOptions(skin.label.labelProperties, textString);
+		graphic = textControl;
 	}
 
 	/**
 	 * Text string.
 	 */
-	function get_text():String return punkText.text;
-	function set_text(value:String):String return punkText.text = value;
+	function get_text():String return textControl.text;
+	function set_text(value:String):String return textControl.text = value;
 
 	/**
 	 * Font family.
 	 */
-	function get_font():String return punkText.font;
-	function set_font(value:String):String return punkText.font = value;
+	function get_font():String return textControl.font;
+	function set_font(value:String):String return textControl.font = value;
 
 	/**
 	 * Font size.
 	 */
-	function get_size():Int return punkText.size;
-	function set_size(value:Int):Int return punkText.size = value;
+	function get_size():Int return textControl.size;
+	function set_size(value:Int):Int return textControl.size = value;
 
 	/**
 	 * Alignment ("left", "center" or "right").
 	 * Only relevant if text spans multiple lines.
 	 */
-	function get_align():String return punkText.align;
-	function set_align(value:String):String return punkText.align = value;
+	function get_align():String return textControl.align;
+	function set_align(value:String):String return textControl.align = value;
 
 	/**
 	 * Automatic word wrapping.
 	 */
-	function get_wordWrap():Bool return punkText.wordWrap;
-	function set_wordWrap(value:Bool):Bool return punkText.wordWrap = value;
+	function get_wordWrap():Bool return textControl.wordWrap;
+	function set_wordWrap(value:Bool):Bool return textControl.wordWrap = value;
 }
