@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<meta title="example" package="com.example.app" version="1.0.0" company=""/>
+
+	<app file="Main" main="Main" path="bin"/>
+
+	<window fps="60" background="0x333333"/>
+	<window width="640" height="480" resizable="true" unless="mobile"/>
+	<window width="0" height="0" fullscreen="true" if="mobile"/>
+	<window orientation="landscape" vsync="true" antialiasing="0" if="cpp"/>
+
+	<source path="."/>
+
+	<haxelib name="HaxePunk-UI"/>
+	<haxelib name="HaxePunk"/>
+
+	<assets path="assets/skins" rename="skins" include="*.png|*.jpg" embed="true"/>
+</project>
