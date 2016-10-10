@@ -1,0 +1,13 @@
+{
+	"name": "HaxePunk-UI",
+	"url" : "http://haxepunk.com",
+	"license": "MIT",
+	"tags": ["flash", "game", "cpp", "openfl"],
+	"description": "A HaxePunk port of the punk.ui library.",
+	"version": "0.1.0",
+	"releasenote": "See CHANGELOG.md",
+	"contributors": ["heardtheword", "bendmorris"],
+	"dependencies": {
+		"HaxePunk": ""
+	}
+}
