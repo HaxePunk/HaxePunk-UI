@@ -51,10 +51,20 @@ class ToggleButton extends Button
 	 * @param	skin		Skin to use when rendering the component
 	 * @param	enabled		If the component is active
 	 */
-	public function new(x:Float = 0, y:Float = 0, width:Int = 1, height:Int = 1, on:Bool = false, text:String = "Button",
-			onReleased:ToggleButtonCallback = null, hotkey:Int = 0, skin:Skin = null, enabled:Bool = true)
+	public function new(
+		x:Float = 0,
+		y:Float = 0,
+		width:Int = 1,
+		height:Int = 1,
+		?on:Bool = false,
+		?text:String = "Button",
+		?onReleased:ButtonCallback = null,
+		?hotkey:Int = 0,
+		?skin:Skin = null,
+		?enabled:Bool = true,
+		?mouseManager:MouseManager)
 	{
-		super(x, y, width, height, text, onReleased, hotkey, skin, enabled);
+		super(x, y, width, height, text, onReleased, hotkey, skin, enabled, mouseManager);
 
 		this.on = on;
 	}
@@ -65,11 +75,11 @@ class ToggleButton extends Button
 	 */
 	override function setupSkin(skin:Skin):Void
 	{
-		if (skin.punkToggleButton == null) return;
+		if (skin.toggleButton == null) return;
 
-		setUpButtonSkin(skin.punkToggleButton);
-		setUpToggleButtonSkin(skin.punkToggleButton);
-		setUpLabel(skin.punkToggleButton.labelProperties);
+		setUpButtonSkin(skin.toggleButton);
+		setUpToggleButtonSkin(skin.toggleButton);
+		setUpLabel(skin.toggleButton.labelProperties);
 
 		addGraphic(normalOnGraphic);
 		addGraphic(label);
@@ -113,30 +123,15 @@ class ToggleButton extends Button
 		{
 			graphic.children[0] = on ? inactiveOnGraphic : inactiveGraphic;
 		}
-	}
 
-	override function pressedCallback():Void
-	{
-		isPressed = true;
-		if (onPressed != null) onPressed(on);
+		var skinImage:SkinImage = cast graphic.children[0];
+		skinImage.width = width;
+		skinImage.height = height;
 	}
 
 	override function releasedCallback():Void
 	{
-		isPressed = false;
-		on = !on;
-		if (onReleased != null) onReleased(on);
-	}
-
-	override function enterCallback():Void
-	{
-		isMoused = true;
-		if (onEnter != null) onEnter(on);
-	}
-
-	override function exitCallback():Void
-	{
-		isMoused = false;
-		if (onExit != null) onExit(on);
+		if (isPressed) on = !on;
+		super.releasedCallback();
 	}
 }

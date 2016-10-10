@@ -4,29 +4,30 @@ package haxepunk.ui;
 /**
  * Contains and controls a collection of grouped radio buttons.
  */
+@:allow(haxepunk.ui.RadioButton)
 class RadioButtonGroup
 {
 	/**
 	 * Function to call when the components state changes
 	 */
-	public var onChange:Function = null;
+	public var onChange:ButtonCallback = null;
 	/**
-	 * Vector containing the grouped PunkRadioButtons
+	 * Vector containing the grouped RadioButtons
 	 */
-	var radioButtons:Array<PunkRadioButton> = new Array<PunkRadioButton>();
+	var radioButtons:Array<RadioButton> = new Array<RadioButton>();
 
 	/**
 	 * Constructor
-	 * @param	onChange Function to call when the group's state changes
+	 * @param	onChange	Function to call when the group's state changes
 	 */
-	public function new(onChange:Function = null)
+	public function new(?onChange:ButtonCallback)
 	{
 		this.onChange = onChange;
 	}
 
 	/**
-	 * Add a PunkRadioButton to the collection
-	 * @param	radioButton PunkRadioButton to add
+	 * Add a RadioButton to the collection
+	 * @param	radioButton		RadioButton to add
 	 */
 	function add(radioButton:RadioButton):Void
 	{
@@ -34,8 +35,8 @@ class RadioButtonGroup
 	}
 
 	/**
-	 * Remove a PunkRadioButton from the collection
-	 * @param	radioButton PunkRadioButton to remove
+	 * Remove a RadioButton		from the collection
+	 * @param	radioButton		RadioButton to remove
 	 */
 	function remove(radioButton:RadioButton):Void
 	{
@@ -45,7 +46,7 @@ class RadioButtonGroup
 
 	/**
 	 * Set a the target radio button to the on state; all others to the off state.
-	 * @param	radioButton PunkRadioButton to turn on
+	 * @param	radioButton		RadioButton to turn on
 	 */
 	function toggleOn(radioButton:RadioButton):Void
 	{
@@ -63,6 +64,6 @@ class RadioButtonGroup
 			}
 		}
 
-		if (onChange != null) onChange(radioButton.id);
+		if (onChange != null) onChange();
 	}
 }

@@ -96,7 +96,7 @@ class Window extends Panel
 			dragging = true;
 			mouseOffsetX = x - world.mouseX;
 			mouseOffsetY = y - world.mouseY;
-			if (world)     world.bringToFront(this);
+			if (world) world.bringToFront(this);
 		}
 
 		if (dragging)

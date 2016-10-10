@@ -17,6 +17,8 @@ import haxepunk.ui.skin.SkinImage;
  */
 class UIComponent extends Entity
 {
+	public static inline var DEFAULT_TYPE:String = "UI";
+
 	public var relativeX(get, set):Float;
 	public var relativeY(get, set):Float;
 
@@ -36,6 +38,8 @@ class UIComponent extends Entity
 
 		var s:Skin = (skin != null) ? skin : UI.skin;
 		if (s != null) setupSkin(s);
+
+		type = DEFAULT_TYPE;
 	}
 
 	/**

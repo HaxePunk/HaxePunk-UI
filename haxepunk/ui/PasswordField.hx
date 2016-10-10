@@ -12,7 +12,6 @@ import haxepunk.ui.skin.Skin;
 class PasswordField extends TextField
 {
 	/**
-	 * Constructor
 	 * @param	x		X-Coordinate for the component
 	 * @param	y		Y-Coordinate for the component
 	 * @param	width	Width of the component
@@ -32,10 +31,10 @@ class PasswordField extends TextField
 	 */
 	override function setupSkin(skin:Skin):Void
 	{
-		if (skin.punkPasswordField == null) return;
+		if (skin.passwordField == null) return;
 
-		punkText = Label.getTextFromLabelOptions(skin.punkLabel.labelProperties, textString);
-		bg = getSkinImage(skin.punkPasswordField.background);
+		punkText = Label.getTextFromLabelOptions(skin.label.labelProperties, textString);
+		bg = getSkinImage(skin.passwordField.background);
 
 		addGraphic(bg);
 		addGraphic(punkText);

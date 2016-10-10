@@ -55,10 +55,10 @@ class TextArea extends Label
 	 */
 	override function setupSkin(skin:Skin):Void
 	{
-		if (skin.punkTextArea == null) return;
+		if (skin.textArea == null) return;
 
-		punkText = Label.getTextFromLabelOptions(skin.punkTextArea.labelProperties, textString);
-		bg = getSkinImage(skin.punkTextArea.background);
+		punkText = Label.getTextFromLabelOptions(skin.textArea.labelProperties, textString);
+		bg = getSkinImage(skin.textArea.background);
 		addGraphic(bg);
 		addGraphic(punkText);
 	}

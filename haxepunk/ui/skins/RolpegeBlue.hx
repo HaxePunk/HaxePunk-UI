@@ -30,43 +30,43 @@ class RolpegeBlue extends Skin
 	{
 		super();
 
-		punkButton = new SkinButtonElement(gy(0, 0), gy(20, 0), gy(40, 0), gy(20, 0), {
+		button = new SkinButtonElement(gy(0, 0), gy(20, 0), gy(40, 0), gy(20, 0), {
 			color:0x000000,
 			size:16,
 			align:TextFormatAlign.CENTER,
 		});
-		punkToggleButton = new SkinToggleButtonElement(gy(0, 0), gy(20, 0), gy(40, 0), gy(20, 0), gy(0, 20), gy(20, 20), gy(40, 20), gy(20, 20), {
+		toggleButton = new SkinToggleButtonElement(gy(0, 0), gy(20, 0), gy(40, 0), gy(20, 0), gy(0, 20), gy(20, 20), gy(40, 20), gy(20, 20), {
 			color:0x000000,
 			size:16,
 			align:TextFormatAlign.CENTER,
 		});
-		punkRadioButton = new SkinToggleButtonElement(gn(0, 40), gn(20, 40), gn(40, 40), gn(20, 40), gn(0, 59), gn(20, 59), gn(40, 59), gn(20, 59), {
+		radioButton = new SkinToggleButtonElement(gn(0, 40), gn(20, 40), gn(40, 40), gn(20, 40), gn(0, 59), gn(20, 59), gn(40, 59), gn(20, 59), {
 			color:0x000000,
 			size:16,
 			x:22,
 		});
 
-		punkLabel = new SkinHasLabelElement({
+		label = new SkinHasLabelElement({
 			color:0x000000,
 			size:16,
 		});
-		punkTextArea = new SkinLabelElement({
+		textArea = new SkinLabelElement({
 			color:0x000000,
 			size:16,
 			x:4,
 		}, gy(40, 80));
-		punkTextField = new SkinLabelElement({
+		textField = new SkinLabelElement({
 			color:0x000000,
 			size:16,
 			x:4,
 		}, gy(40, 80));
-		punkPasswordField = new SkinLabelElement({
+		passwordField = new SkinLabelElement({
 			color:0x000000,
 			size:16,
 			x:4,
 		}, gy(40, 80));
 
-		punkWindow = new SkinWindowElement(gy(0, 79), gy(20, 79), {
+		window = new SkinWindowElement(gy(0, 79), gy(20, 79), {
 			color:0x000000,
 			size:16,
 			x:3,

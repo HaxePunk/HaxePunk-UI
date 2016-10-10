@@ -15,11 +15,15 @@ class Label extends UIComponent
 	{
 		if (labelProperties == null) labelProperties = {};
 		var labelWidth:Int = width == null ? 0 : width,
-			labelAlign:TextFormatAlign = TextFormatAlign.CENTER;
+			labelAlign:TextFormatAlign = TextFormatAlign.CENTER,
+			labelX:Float = 0,
+			labelY:Float = 0;
 		if (Reflect.hasField(labelProperties, "width")) labelWidth = Std.int(labelProperties.width);
 		if (Reflect.hasField(labelProperties, "align")) labelAlign = labelProperties.align;
+		if (Reflect.hasField(labelProperties, "x")) labelX = labelProperties.x;
+		if (Reflect.hasField(labelProperties, "y")) labelY = labelProperties.y;
 
-		var label = new Text(text, 0, 0, labelWidth, 0, labelProperties);
+		var label = new Text(text, labelX, labelY, labelWidth, 0, labelProperties);
 		if (height != null && !Reflect.hasField(labelProperties, "y"))
 		{
 			label.y = (height >> 1) - (label.textHeight >> 1);
@@ -66,9 +70,9 @@ class Label extends UIComponent
 	 */
 	override function setupSkin(skin:Skin):Void
 	{
-		if (skin.punkLabel == null) return;
+		if (skin.label == null) return;
 
-		punkText = getTextFromLabelOptions(skin.punkLabel.labelProperties, textString);
+		punkText = getTextFromLabelOptions(skin.label.labelProperties, textString);
 		graphic = punkText;
 	}
 

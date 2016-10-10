@@ -1,7 +1,5 @@
 package haxepunk.ui;
 
-import flash.display.BitmapData;
-import flash.events.MouseEvent;
 import flash.geom.Point;
 import com.haxepunk.HXP;
 import com.haxepunk.Graphic;
@@ -15,13 +13,25 @@ import haxepunk.ui.skin.SkinButtonElement;
 import haxepunk.ui.skin.Skin;
 import haxepunk.ui.skin.SkinImage;
 
-typedef ButtonCallback = Function;
-
 /**
  * A button component.
  */
 class Button extends UIComponent
 {
+	public var mouseManager(default, set):MouseManager;
+	inline function set_mouseManager(manager:MouseManager)
+	{
+		if (mouseManager != null)
+		{
+			mouseManager.remove(this);
+		}
+		if (manager != null)
+		{
+			manager.add(this, pressedCallback, releasedCallback, enterCallback, exitCallback);
+		}
+		return this.mouseManager = manager;
+	}
+
 	/**
 	 * Whether the button will respond to events.
 	 */
@@ -30,22 +40,22 @@ class Button extends UIComponent
 	/**
 	 * Function called when the button is pressed.
 	 */
-	public var onPressed:Dynamic = null;
+	public var onPressed:ButtonCallback = null;
 
 	/**
 	 * Function called when the button is released
 	 */
-	public var onReleased:Dynamic = null;
+	public var onReleased:ButtonCallback = null;
 
 	/**
 	 * Function called when the mouse first hovers over the button
 	 */
-	public var onEnter:Dynamic = null;
+	public var onEnter:ButtonCallback = null;
 
 	/**
 	 * Function called when the mouse first stops hovering over the button
 	 */
-	public var onExit:Dynamic = null;
+	public var onExit:ButtonCallback = null;
 
 	/**
 	 * Is the button pressed
@@ -55,7 +65,7 @@ class Button extends UIComponent
 	/**
 	 * Is the button activated via the mouse
 	 */
-	public var isMoused:Bool = false;
+	public var isHovered:Bool = false;
 
 	/**
 	 * Is the button activated via the keyboard
@@ -85,6 +95,11 @@ class Button extends UIComponent
 	public var hotkey:Int = 0;
 
 	/**
+	 * Amount to add to label Y coordinate when this button is pressed.
+	 */
+	public var labelPressedOffset:Int = 2;
+
+	/**
 	 * The button's label
 	 */
 	public var label:Text;
@@ -93,11 +108,6 @@ class Button extends UIComponent
 	 * Text string for this component
 	 */
 	var textString:String = "";
-
-	/**
-	 * Has the component been inititalized
-	 */
-	var initialized:Bool = false;
 
 	/**
 	 * Constructor
@@ -118,10 +128,12 @@ class Button extends UIComponent
 		width:Int = 1,
 		height:Int = 1,
 		text:String = "Button",
-		?onReleased:Dynamic,
-		hotkey:Int = 0,
+		?onReleased:ButtonCallback,
+		?hotkey:Int = 0,
 		?skin:Skin,
-		enabled:Bool = true)
+		?enabled:Bool = true,
+		?mouseManager:MouseManager
+		)
 	{
 		this.textString = text;
 
@@ -130,6 +142,7 @@ class Button extends UIComponent
 		this.onReleased = onReleased;
 		this.hotkey = hotkey;
 		this.enabled = enabled;
+		this.mouseManager = mouseManager;
 	}
 
 	/**
@@ -138,10 +151,10 @@ class Button extends UIComponent
 	 */
 	override function setupSkin(skin:Skin):Void
 	{
-		if (skin.punkButton == null) return;
+		if (skin.button == null) return;
 
-		setUpButtonSkin(skin.punkButton);
-		setUpLabel(skin.punkButton.labelProperties);
+		setUpButtonSkin(skin.button);
+		setUpLabel(skin.button.labelProperties);
 
 		addGraphic(normalGraphic);
 		addGraphic(label);
@@ -176,7 +189,7 @@ class Button extends UIComponent
 	 * @param	onEnter Function called when the mouse first hovers over the button
 	 * @param	onExit Function called when the mouse stoppes hovering over the button
 	 */
-	public function setCallbacks(onReleased:Dynamic = null, onPressed:Dynamic = null, onEnter:Dynamic = null, onExit:Dynamic = null):Void
+	public function setCallbacks(onReleased:ButtonCallback = null, onPressed:ButtonCallback = null, onEnter:ButtonCallback = null, onExit:ButtonCallback = null):Void
 	{
 		this.onReleased = onReleased;
 		this.onPressed = onPressed;
@@ -186,13 +199,6 @@ class Button extends UIComponent
 
 	override public function update():Void{
 		super.update();
-
-		if (!initialized)
-		{
-			HXP.stage.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown, false, 0, true);
-			HXP.stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp, false, 0, true);
-			initialized = true;
-		}
 
 		if (hotkey != 0)
 		{
@@ -206,17 +212,6 @@ class Button extends UIComponent
 				isKeyed = false;
 				if (isPressed) releasedCallback();
 			}
-		}
-
-		if (UI.mouseIsOver(this, true))
-		{
-			if (!isMoused) enterCallback();
-			_currentGraphic = ButtonState.Hover;
-		}
-		else
-		{
-			if (isMoused) exitCallback();
-			_currentGraphic = ButtonState.Normal;
 		}
 
 		if (isPressed) _currentGraphic = ButtonState.Pressed;
@@ -250,6 +245,7 @@ class Button extends UIComponent
 	function pressedCallback():Void
 	{
 		isPressed = true;
+		setCurrentGraphic();
 		if (onPressed != null) onPressed();
 	}
 
@@ -258,7 +254,9 @@ class Button extends UIComponent
 	 */
 	function releasedCallback():Void
 	{
+		if (!isPressed) return;
 		isPressed = false;
+		setCurrentGraphic();
 		if (onReleased != null) onReleased();
 	}
 
@@ -267,7 +265,8 @@ class Button extends UIComponent
 	 */
 	function enterCallback():Void
 	{
-		isMoused = true;
+		isHovered = true;
+		setCurrentGraphic();
 		if (onEnter != null) onEnter();
 	}
 
@@ -276,44 +275,40 @@ class Button extends UIComponent
 	 */
 	function exitCallback():Void
 	{
-		isMoused = false;
+		isHovered = isPressed = false;
+		setCurrentGraphic();
 		if (onExit != null) onExit();
 	}
 
-	function onMouseDown(e:MouseEvent = null):Void{
-		if (!enabled || !Input.mousePressed || isPressed) return;
-		if (isMoused) pressedCallback();
-	}
-
-	function onMouseUp(e:MouseEvent = null):Void{
-		if (!enabled || !Input.mouseReleased || !isPressed) return;
-		if (isPressed) isPressed = false;
-		if (isMoused) releasedCallback();
+	function setCurrentGraphic()
+	{
+		var lastGraphic = _currentGraphic;
+		if (isPressed)
+		{
+			_currentGraphic = ButtonState.Pressed;
+		}
+		else if (isHovered)
+		{
+			_currentGraphic = ButtonState.Hover;
+		}
+		else
+		{
+			_currentGraphic = ButtonState.Normal;
+		}
+		if (label != null && (lastGraphic == ButtonState.Pressed) != (_currentGraphic == ButtonState.Pressed))
+		{
+			label.y += labelPressedOffset * (_currentGraphic == ButtonState.Pressed ? 1 : -1);
+		}
 	}
 
 	override public function added():Void
 	{
 		super.added();
-
-		initialized = false;
-
-		if (HXP.stage != null)
-		{
-			HXP.stage.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown, false, 0, true);
-			HXP.stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp, false, 0, true);
-			initialized = true;
-		}
 	}
 
 	override public function removed():Void
 	{
 		super.removed();
-
-		if (HXP.stage != null)
-		{
-			HXP.stage.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
-			HXP.stage.removeEventListener(MouseEvent.MOUSE_UP, onMouseUp);
-		}
 	}
 
 	var _currentGraphic:ButtonState = ButtonState.Normal;

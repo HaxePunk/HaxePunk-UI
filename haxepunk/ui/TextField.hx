@@ -30,10 +30,10 @@ class TextField extends TextArea
 	 */
 	override function setupSkin(skin:Skin):Void
 	{
-		if (skin.punkTextField == null) return;
+		if (skin.textField == null) return;
 
-		punkText = Label.getTextFromLabelOptions(skin.punkLabel.labelProperties, textString);
-		bg = getSkinImage(skin.punkTextField.background);
+		punkText = Label.getTextFromLabelOptions(skin.label.labelProperties, textString);
+		bg = getSkinImage(skin.textField.background);
 
 		addGraphic(bg);
 		addGraphic(punkText);

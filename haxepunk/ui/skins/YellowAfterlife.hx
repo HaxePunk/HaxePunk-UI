@@ -41,45 +41,45 @@ class YellowAfterlife extends Skin
 	 * @param	windowCaption defines which image style is used for the Window Caption
 	 * @param	windowBody defines which image style is used for the Window Body
 	 */
-	public function new(roundedButtons:Bool = true, passwordField:ImageStyle = 2, textArea:ImageStyle = 0, textField:ImageStyle = 1, windowCaption:ImageStyle = 0, windowBody:ImageStyle = 0)
+	public function new(roundedButtons:Bool = true, passwordFieldStyle:ImageStyle = 2, textAreaStyle:ImageStyle = 0, textFieldStyle:ImageStyle = 1, windowCaptionStyle:ImageStyle = 0, windowBodyStyle:ImageStyle = 0)
 	{
 		super();
 
 		var by:Int = (roundedButtons) ? 16:0;
-		punkButton = new SkinButtonElement(gy(0, by), gy(16, by), gy(32, by), gy(16, by), {
+		button = new SkinButtonElement(gy(0, by), gy(16, by), gy(32, by), gy(16, by), {
 			color:0xFF3366,
 			size:16,
 		});
 
-		punkToggleButton = new SkinToggleButtonElement(gn(0, 64), gn(16, 64), gn(32, 64), gn(16, 64), gn(0, 80), gn(16, 80), gn(32, 80), gn(16, 80), {
+		toggleButton = new SkinToggleButtonElement(gn(0, 64), gn(16, 64), gn(32, 64), gn(16, 64), gn(0, 80), gn(16, 80), gn(32, 80), gn(16, 80), {
 			color:0xFF3366,
 			size:16,
 			x:16,
 		});
-		punkRadioButton = new SkinToggleButtonElement(gn(0, 96), gn(16, 96), gn(32, 96), gn(16, 96), gn(0, 112), gn(16, 112), gn(32, 112), gn(16, 112), {
+		radioButton = new SkinToggleButtonElement(gn(0, 96), gn(16, 96), gn(32, 96), gn(16, 96), gn(0, 112), gn(16, 112), gn(32, 112), gn(16, 112), {
 			color:0xFF3366,
 			size:16,
 			x:16,
 		});
 
-		punkLabel = new SkinHasLabelElement({
+		label = new SkinHasLabelElement({
 			color:0xFF3366,
 			size:16,
 		});
-		punkTextArea = new SkinLabelElement({
+		textArea = new SkinLabelElement({
 			color:0xFF3366,
 			size:16,
-		}, gy(64 + (16 * textArea), 0));
-		punkTextField = new SkinLabelElement({
+		}, gy(64 + (16 * textAreaStyle), 0));
+		textField = new SkinLabelElement({
 			color:0xFF3366,
 			size:16,
-		}, gy(64 + (16 * textField), 16));
-		punkPasswordField = new SkinLabelElement({
+		}, gy(64 + (16 * textFieldStyle), 16));
+		passwordField = new SkinLabelElement({
 			color:0xFF3366,
 			size:16,
-		}, gy(16 * passwordField, 48));
+		}, gy(16 * passwordFieldStyle, 48));
 
-		punkWindow = new SkinWindowElement(gy(64 + (16 * windowCaption), 33, 16, 15), gy(64 + (16 * windowBody), 47, 16, 17), {
+		window = new SkinWindowElement(gy(64 + (16 * windowCaptionStyle), 33, 16, 15), gy(64 + (16 * windowBodyStyle), 47, 16, 17), {
 			color:0xFF3366,
 			size:16,
 			x:2,
