@@ -18,6 +18,7 @@ import haxepunk.ui.UIComponent;
 class MouseManager extends Entity
 {
 	var _registeredObjects:Map<Entity, MouseData> = new Map();
+	var _collisions:Array<Entity> = new Array();
 	var _lastCollisions:Array<Entity> = new Array();
 
 	public function new()
@@ -98,7 +99,7 @@ class MouseManager extends Entity
 	{
 		super.update();
 
-		var collisions:Array<Entity> = new Array();
+		var collisions:Array<Entity> = _collisions;
 		scene.collidePointInto(type, scene.mouseX, scene.mouseY, collisions);
 
 		for (i in 0 ... collisions.length - 1)
@@ -167,6 +168,8 @@ class MouseManager extends Entity
 			}
 		}
 
+		_collisions = _lastCollisions;
+		if (_collisions.length > 0) _collisions.splice(0, _collisions.length);
 		_lastCollisions = collisions;
 	}
 }
