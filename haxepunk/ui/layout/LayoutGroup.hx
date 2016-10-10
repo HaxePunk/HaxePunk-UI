@@ -14,6 +14,9 @@ abstract LayoutType(Int)
 	var Grid = 3;
 }
 
+/**
+ * An EntityList which can reposition its entities on resize.
+ */
 class LayoutGroup extends EntityList<Entity>
 	implements ILayout
 {
@@ -35,6 +38,14 @@ class LayoutGroup extends EntityList<Entity>
 	public var fillParent:Bool = false;
 	public var stretchContents:Bool = false;
 
+	/**
+	 * @param	wraps			If provided, this LayoutGroup wraps this Entity
+	 * @param	percentWidth	Percent of available width to fill. If this
+	 * 							LayoutGroup has no parent, percent of screen width.
+	 * @param	percentHeight	Percent of available height to fill. If this
+	 * 							LayoutGroup has no parent, percent of screen height.
+	 * @param	childLayoutType	How child entities should be arranged.
+	 */
 	public function new(?wraps:Entity, ?percentWidth:Float=1, ?percentHeight:Float=1, ?childLayoutType:LayoutType=LayoutType.Stack)
 	{
 		super();
@@ -53,6 +64,9 @@ class LayoutGroup extends EntityList<Entity>
 		if (wraps != null) super.add(wraps);
 	}
 
+	/**
+	 * Add an Entity.
+	 */
 	override public function add(object:Entity):LayoutGroup
 	{
 		if (Std.is(object, ILayout))
@@ -72,6 +86,10 @@ class LayoutGroup extends EntityList<Entity>
 		return cast super.add(object);
 	}
 
+	/**
+	 * Position all children. If any children are LayoutGroups, their children
+	 * will also be positioned.
+	 */
 	public function layoutChildren(?x:Float, ?y:Float, ?parentWidth:Float, ?parentHeight:Float):Void
 	{
 		if (x == null)
@@ -163,7 +181,6 @@ class LayoutGroup extends EntityList<Entity>
 	override public function added()
 	{
 		super.added();
-		//layoutChildren();
 	}
 
 	override function get_width() return this.width;

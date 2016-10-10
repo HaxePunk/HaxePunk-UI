@@ -17,6 +17,9 @@ interface ILayout
 	public function layoutChildren(?x:Float, ?y:Float, ?parentWidth:Float, ?parentHeight:Float):Void;
 }
 
+/**
+ * Data used to position an entity.
+ */
 class Layout
 {
 	public var parent:Null<ILayout>;
@@ -30,12 +33,26 @@ class Layout
 
 	public function new() {}
 
+	/**
+	 * Set the X position.
+	 * @param	anchor	Relative position on screen.
+	 * 					0 to 1, 0 = left, 1 = right
+	 * @param	edge	The edge of the entity to position at the anchor.
+	 * 					0 to 1, 0 = left edge, 1 = right edge
+	 */
 	public inline function setX(anchor:Float=0, edge:Float=0):Void
 	{
 		this.anchorX = anchor;
 		this.edgeX = edge;
 	}
 
+	/**
+	 * Set the Y position.
+	 * @param	anchor	Relative position on screen.
+	 * 					0 to 1, 0 = top, 1 = bottom
+	 * @param	edge	The edge of the entity to position at the anchor.
+	 * 					0 to 1, 0 = top edge, 1 = bottom edge
+	 */
 	public inline function setY(anchor:Float=0, edge:Float=0):Void
 	{
 		this.anchorY = anchor;
