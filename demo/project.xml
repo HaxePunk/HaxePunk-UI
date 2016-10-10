@@ -13,6 +13,4 @@
 
 	<haxelib name="HaxePunk-UI"/>
 	<haxelib name="HaxePunk"/>
-
-	<assets path="assets/skins" rename="skins" include="*.png|*.jpg" embed="true"/>
 </project>
