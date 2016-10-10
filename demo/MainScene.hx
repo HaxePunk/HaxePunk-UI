@@ -16,7 +16,6 @@ class MainScene extends Scene
 	override public function begin()
 	{
 		var mouseManager = new MouseManager();
-		mouseManager.type = haxepunk.ui.UIComponent.DEFAULT_TYPE;
 		add(mouseManager);
 
 		var btn = new Button(0, 0, 256, 256, "BIG BUTTON", mouseManager);

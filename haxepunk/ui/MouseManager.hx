@@ -4,10 +4,16 @@ import flash.errors.Error;
 import flash.geom.Point;
 import com.haxepunk.Entity;
 import com.haxepunk.utils.Input;
+import haxepunk.ui.UIComponent;
 
 /**
  * Allow Entities to register callbacks on mouse interaction. Based on
  * FlxMouseEventManager by TiagoLr.
+ *
+ * To use a MouseManager, add it to the scene, then call the `add` method to add
+ * Entities with mouse event callbacks. Multiple MouseManagers can be added to
+ * the same scene. All entities within one MouseManager must be the same
+ * collision type.
  */
 class MouseManager extends Entity
 {
@@ -42,6 +48,15 @@ class MouseManager extends Entity
 		?onExit:Void -> Void,
 		fallThrough = false):Entity
 	{
+		if (this.type == "")
+		{
+			this.type = entity.type;
+		}
+		else if (this.type != entity.type)
+		{
+			throw "Entities added to a MouseManager must all be the same type.";
+		}
+
 		var data:MouseData = new MouseData(entity, onPress, onRelease, onEnter, onExit, fallThrough);
 		_registeredObjects[entity] = data;
 		return entity;
