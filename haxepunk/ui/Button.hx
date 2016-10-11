@@ -103,6 +103,7 @@ class Button extends UIComponent
 	 * The button's label
 	 */
 	public var label:Text;
+	var labelY:Float = 0;
 
 	/**
 	 * Text string for this component
@@ -180,6 +181,7 @@ class Button extends UIComponent
 	function setUpLabel(labelProperties:LabelOptions)
 	{
 		label = Label.getTextFromLabelOptions(labelProperties, textString, width, height);
+		labelY = label.y;
 	}
 
 	/**
@@ -215,6 +217,7 @@ class Button extends UIComponent
 		}
 
 		if (isPressed) _currentGraphic = ButtonState.Pressed;
+		label.y = labelY + labelPressedOffset * (isPressed ? 1 : 0);
 
 		var graphic:Graphiclist = cast graphic;
 		if (enabled)
@@ -295,15 +298,6 @@ class Button extends UIComponent
 		else
 		{
 			_currentGraphic = ButtonState.Normal;
-		}
-		setLabelPosition(lastGraphic);
-	}
-
-	function setLabelPosition(lastGraphic:ButtonState)
-	{
-		if (label != null && (lastGraphic == ButtonState.Pressed) != (_currentGraphic == ButtonState.Pressed))
-		{
-			label.y += labelPressedOffset * (_currentGraphic == ButtonState.Pressed ? 1 : -1);
 		}
 	}
 

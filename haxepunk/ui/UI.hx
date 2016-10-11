@@ -24,7 +24,7 @@ import haxepunk.ui.skin.Skin;
 	{
 		if (_skin == null)
 		{
-			_skin = new haxepunk.ui.skins.NESSkin();
+			_skin = new haxepunk.ui.skins.Default();
 		}
 		return _skin;
 	}

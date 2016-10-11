@@ -127,11 +127,17 @@ class ToggleButton extends Button
 		var skinImage:SkinImage = cast graphic.children[0];
 		skinImage.width = width;
 		skinImage.height = height;
+
+		label.y = labelY + labelPressedOffset * ((isPressed || on) ? 1 : 0);
 	}
 
 	override function releasedCallback():Void
 	{
-		if (isPressed) on = !on;
+		if (isPressed)
+		{
+			on = !on;
+			label.y += labelPressedOffset * (on ? 1 : -1);
+		}
 		setCurrentGraphic();
 		super.releasedCallback();
 	}

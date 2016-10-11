@@ -67,6 +67,12 @@ class RadioButton extends ToggleButton
 		radioButtonGroup.add(this);
 	}
 
+	override public function update()
+	{
+		super.update();
+		label.y = labelY;
+	}
+
 	/**
 	 * Additional setup steps for this component
 	 * @param	skin	Skin to use when rendering the component
@@ -83,7 +89,13 @@ class RadioButton extends ToggleButton
 		addGraphic(label);
 	}
 
-	override function setLabelPosition(lastGraphic:ButtonState) {}
+	override function releasedCallback():Void
+	{
+		if (isPressed) radioButtonGroup.toggleOn(this);
+		isPressed = false;
+		setCurrentGraphic();
+		if (onReleased != null) onReleased();
+	}
 
 	/**
 	 * Change the state of the component
