@@ -132,6 +132,7 @@ class ToggleButton extends Button
 	override function releasedCallback():Void
 	{
 		if (isPressed) on = !on;
+		setCurrentGraphic();
 		super.releasedCallback();
 	}
 }

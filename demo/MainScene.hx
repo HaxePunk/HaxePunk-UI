@@ -26,10 +26,13 @@ class MainScene extends Scene
 
 		var layout = new LayoutGroup(0.5, LayoutType.Vertical);
 		layout.spacing = 32;
-		layout.add(new Button(0, 0, 128, 32, "Press me", mouseManager));
+		var btn = new Button(0, 0, 128, 32, "Press me", mouseManager);
+		layout.add(btn);
 		var btn = new Button(0, 0, 128, 32, "Or me", mouseManager);
 		layout.add(btn);
-		layout.add(new Button(0, 0, 128, 32, "Or even me", mouseManager));
+		var btn = new Button(0, 0, 128, 32, "But not me", mouseManager);
+		btn.enabled = false;
+		layout.add(btn);
 		var grp = new RadioButtonGroup(function() trace("CHANGED"));
 		var btn = new RadioButton(grp, "id1", 0, 0, 24, 24, "Option 1", mouseManager);
 		layout.add(btn);

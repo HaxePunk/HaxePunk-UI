@@ -1,89 +1,76 @@
 package haxepunk.ui.skins;
 
-
 import flash.display.BitmapData;
 import flash.geom.Rectangle;
+import flash.text.TextFormatAlign;
 import openfl.Assets;
 import com.haxepunk.HXP;
 import com.haxepunk.Graphic;
 import com.haxepunk.RenderMode;
-import com.haxepunk.graphics.Image;
 import com.haxepunk.graphics.atlas.AtlasData;
-import haxepunk.ui.skin.SkinButtonElement;
-import haxepunk.ui.skin.SkinLabelElement;
 import haxepunk.ui.skin.Skin;
-import haxepunk.ui.skin.SkinImage;
+import haxepunk.ui.skin.SkinButtonElement;
 import haxepunk.ui.skin.SkinHasLabelElement;
+import haxepunk.ui.skin.SkinImage;
+import haxepunk.ui.skin.SkinLabelElement;
 import haxepunk.ui.skin.SkinToggleButtonElement;
 import haxepunk.ui.skin.SkinWindowElement;
 
-@:enum
-abstract ImageStyle(Int) from Int to Int
-{
-	var Zero = 0;
-	var One = 1;
-	var Two = 2;
-}
-
 /**
- * Yellow After Life skin definition
+ * HaxePunk-UI default skin definition
  */
-class YellowAfterlife extends Skin
+class Default extends Skin
 {
-	static inline var img:String = "skins/yellowafterlife.png";
-
 	/**
-	 * Constructor.
-	 * @param	roundedButtons If using rounded buttons
-	 * @param	passwordField defines which image style is used for the Password Field
-	 * @param	textArea defines which image style is used for the Text Area
-	 * @param	textField defines which image style is used for the Text Field
-	 * @param	windowCaption defines which image style is used for the Window Caption
-	 * @param	windowBody defines which image style is used for the Window Body
+	 * The asset to use for the skin image.
 	 */
-	public function new(roundedButtons:Bool = true, passwordFieldStyle:ImageStyle = 2, textAreaStyle:ImageStyle = 0, textFieldStyle:ImageStyle = 1, windowCaptionStyle:ImageStyle = 0, windowBodyStyle:ImageStyle = 0)
+	static inline var img = "skins/default.png";
+
+	public function new()
 	{
 		super();
 
-		var by:Int = (roundedButtons) ? 16:0;
-		button = new SkinButtonElement(gy(0, by), gy(16, by), gy(32, by), gy(16, by), {
-			color:0xFF3366,
+		button = new SkinButtonElement(gy(0, 96), gy(24, 96), gy(48, 96), gy(96, 96), {
+			color:0x000000,
 			size:16,
+			align:TextFormatAlign.CENTER,
 		});
-
-		toggleButton = new SkinToggleButtonElement(gn(0, 64), gn(16, 64), gn(32, 64), gn(16, 64), gn(0, 80), gn(16, 80), gn(32, 80), gn(16, 80), {
-			color:0xFF3366,
+		toggleButton = new SkinToggleButtonElement(gy(0, 96), gy(24, 96), gy(48, 96), gy(96, 96), gy(48, 96), gy(48, 96), gy(48, 96), gy(20, 20), {
+			color:0x000000,
 			size:16,
-			x:16,
+			align:TextFormatAlign.CENTER,
 		});
-		radioButton = new SkinToggleButtonElement(gn(0, 96), gn(16, 96), gn(32, 96), gn(16, 96), gn(0, 112), gn(16, 112), gn(32, 112), gn(16, 112), {
-			color:0xFF3366,
+		radioButton = new SkinToggleButtonElement(gy(0, 48, 16, 16), gy(16, 48, 16, 16), gy(32, 48, 16, 16), gy(96, 0, 16, 16), gy(32, 48, 16, 16), gy(48, 48, 16, 16), gy(0, 48, 16, 16), gy(96, 16, 16, 16), {
+			color:0x000000,
 			size:16,
-			x:16,
+			x:22,
 		});
 
 		label = new SkinHasLabelElement({
-			color:0xFF3366,
+			color:0x000000,
 			size:16,
 		});
 		textArea = new SkinLabelElement({
-			color:0xFF3366,
+			color:0x000000,
 			size:16,
-		}, gy(64 + (16 * textAreaStyle), 0));
+			x:4,
+		}, gy(0, 0, 48, 48));
 		textField = new SkinLabelElement({
-			color:0xFF3366,
+			color:0x000000,
 			size:16,
-		}, gy(64 + (16 * textFieldStyle), 16));
+			x:4,
+		}, gy(0, 0, 48, 48));
 		passwordField = new SkinLabelElement({
-			color:0xFF3366,
+			color:0x000000,
 			size:16,
-		}, gy(16 * passwordFieldStyle, 48));
+			x:4,
+		}, gy(0, 0, 48, 48));
 
-		window = new SkinWindowElement(gy(64 + (16 * windowCaptionStyle), 33, 16, 15), gy(64 + (16 * windowBodyStyle), 47, 16, 17), {
-			color:0xFF3366,
+		window = new SkinWindowElement(gy(112, 0, 16, 96), gy(48, 0, 96, 96), {
+			color:0x000000,
 			size:16,
-			x:2,
-			y:-1,
+			x:3,
+			y:1,
 		});
 	}
 
@@ -95,7 +82,7 @@ class YellowAfterlife extends Skin
 	 * @param	h Height of the image sub-section
 	 * @return SkinImage for the image sub-section requested in 9-Slice format
 	 */
-	function gy(x:Int, y:Int, w:Int = 16, h:Int = 16):SkinImage
+	function gy(x:Int, y:Int, w:Int = 24, h:Int = 24):SkinImage
 	{
 		return new SkinImage(gi(x, y, w, h), true, 4, 4, 4, 4);
 	}
@@ -108,7 +95,7 @@ class YellowAfterlife extends Skin
 	 * @param	h Height of the image sub-section
 	 * @return SkinImage for the image sub-section requested in a non 9-Sliced format
 	 */
-	function gn(x:Int, y:Int, w:Int = 16, h:Int = 16):SkinImage
+	function gn(x:Int, y:Int, w:Int = 24, h:Int = 24):SkinImage
 	{
 		return new SkinImage(gi(x, y, w, h), false);
 	}
@@ -119,9 +106,9 @@ class YellowAfterlife extends Skin
 	 * @param	y Y-Coordinate for the image offset
 	 * @param	w Width of the image sub-section
 	 * @param	h Height of the image sub-section
-	 * @return ImageType for the image sub-section requested
+	 * @return BitmapData for the image sub-section requested
 	 */
-	function gi(x:Int, y:Int, w:Int = 16, h:Int = 16):ImageType
+	function gi(x:Int, y:Int, w:Int = 20, h:Int = 20):ImageType
 	{
 		_r.x = x;
 		_r.y = y;

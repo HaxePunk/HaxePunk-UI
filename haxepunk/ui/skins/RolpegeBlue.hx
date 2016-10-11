@@ -75,12 +75,12 @@ class RolpegeBlue extends Skin
 	}
 
 	/**
-	 * Returns the portion of the skin image as a PunkSkinImage object in a 9-Slice format
+	 * Returns the portion of the skin image as a SkinImage object in a 9-Slice format
 	 * @param	x X-Coordinate for the image offset
 	 * @param	y Y-Coordinate for the image offset
 	 * @param	w Width of the image sub-section
 	 * @param	h Height of the image sub-section
-	 * @return PunkSkinImage for the image sub-section requested in 9-Slice format
+	 * @return SkinImage for the image sub-section requested in 9-Slice format
 	 */
 	function gy(x:Int, y:Int, w:Int = 20, h:Int = 20):SkinImage
 	{
@@ -88,12 +88,12 @@ class RolpegeBlue extends Skin
 	}
 
 	/**
-	 * Returns the portion of the skin image as a PunkSkinImage object in a non 9-Sliced format
+	 * Returns the portion of the skin image as a SkinImage object in a non 9-Sliced format
 	 * @param	x X-Coordinate for the image offset
 	 * @param	y Y-Coordinate for the image offset
 	 * @param	w Width of the image sub-section
 	 * @param	h Height of the image sub-section
-	 * @return PunkSkinImage for the image sub-section requested in a non 9-Sliced format
+	 * @return SkinImage for the image sub-section requested in a non 9-Sliced format
 	 */
 	function gn(x:Int, y:Int, w:Int = 20, h:Int = 20):SkinImage
 	{

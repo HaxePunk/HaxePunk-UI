@@ -244,6 +244,7 @@ class Button extends UIComponent
 	 */
 	function pressedCallback():Void
 	{
+		if (!enabled) return;
 		isPressed = true;
 		setCurrentGraphic();
 		if (onPressed != null) onPressed();
@@ -295,6 +296,11 @@ class Button extends UIComponent
 		{
 			_currentGraphic = ButtonState.Normal;
 		}
+		setLabelPosition(lastGraphic);
+	}
+
+	function setLabelPosition(lastGraphic:ButtonState)
+	{
 		if (label != null && (lastGraphic == ButtonState.Pressed) != (_currentGraphic == ButtonState.Pressed))
 		{
 			label.y += labelPressedOffset * (_currentGraphic == ButtonState.Pressed ? 1 : -1);

@@ -49,11 +49,11 @@ class UIComponent extends Entity
 	function setupSkin(skin:Skin):Void {}
 
 	/**
-	 * Returns the FlashPunk Image representation of a PunkSkinImage, cropped to the supplied width and height, if available
-	 * @param	skinImage the PunkSkinImage to convert to a FlashPunk Image
+	 * Returns the FlashPunk Image representation of a SkinImage, cropped to the supplied width and height, if available
+	 * @param	skinImage the SkinImage to convert to a FlashPunk Image
 	 * @param	width Width of the image section to return
 	 * @param	height Height of the image section to return
-	 * @return FlashPunk Image copy of the PunkSkinImage or null if no skin image is supplied.
+	 * @return FlashPunk Image copy of the SkinImage or null if no skin image is supplied.
 	 */
 	function getSkinImage(skinImage:SkinImage, width:Int = 0, height:Int = 0):SkinImage
 	{

@@ -83,11 +83,7 @@ class RadioButton extends ToggleButton
 		addGraphic(label);
 	}
 
-	override function releasedCallback():Void
-	{
-		if (isPressed) radioButtonGroup.toggleOn(this);
-		super.releasedCallback();
-	}
+	override function setLabelPosition(lastGraphic:ButtonState) {}
 
 	/**
 	 * Change the state of the component
