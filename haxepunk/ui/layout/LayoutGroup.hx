@@ -23,9 +23,6 @@ class LayoutGroup extends EntityList<Entity>
 	public var layoutData:Layout;
 
 	public var childLayoutType:LayoutType = LayoutType.Stack;
-	public var paddingX:Float = 0;
-	public var paddingY:Float = 0;
-
 	/* Amount of spacing between children. Used for Horizontal/Vertical/Grid. */
 	public var spacing:Float = 0;
 
@@ -33,9 +30,13 @@ class LayoutGroup extends EntityList<Entity>
 	public var percentHeight:Float = 1;
 	public var widthBounds:Bounds = new Bounds();
 	public var heightBounds:Bounds = new Bounds();
+	public var paddingX:Float = 0;
+	public var paddingY:Float = 0;
 
 	public var wraps:Null<Entity>;
+	/* If true, this LayoutGroup should fill available space. */
 	public var fillParent:Bool = false;
+	/* If true, this LayoutGroup's children should stretch to fill available space. */
 	public var stretchContents:Bool = false;
 
 	/**
@@ -99,10 +100,10 @@ class LayoutGroup extends EntityList<Entity>
 				totalScaleY = HXP.screen.fullScaleY;
 
 			// topmost LayoutGroup should fill the screen
-			x = -Math.min(0, HXP.screen.x) / totalScaleX;
-			y = -Math.min(0, HXP.screen.y) / totalScaleY;
-			parentWidth = HXP.screen.width / totalScaleX;
-			parentHeight = HXP.screen.height / totalScaleY;
+			x = HXP.screen.x;
+			y = HXP.screen.y;
+			parentWidth = HXP.screen.width;
+			parentHeight = HXP.screen.height;
 		}
 
 		if (fillParent)
@@ -177,6 +178,11 @@ class LayoutGroup extends EntityList<Entity>
 				default: {}
 			}
 		}
+	}
+
+	override public function resized()
+	{
+		if (layoutData.parent == null) layoutChildren();
 	}
 
 	override function get_width() return this.width;

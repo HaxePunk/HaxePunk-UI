@@ -36,12 +36,12 @@ class TextArea extends Label
 	 */
 	public function new(text:String = "", x:Float = 0, y:Float = 0, width:Int = 0, height:Int = 0, skin:Skin = null)
 	{
+		if (width == 0) width = 240;
+		if (height == 0) height = 36;
 		super(text, x, y, width, height, skin);
 		textControl._field.selectable = true;
 		textControl._field.type = TextFieldType.INPUT;
 		textControl._field.multiline = true;
-		//textControl.width = (width != 0) ? width : 240;
-		//textControl.height = (height != 0) ? height : 36;
 		textControl._field.x = x;
 		textControl._field.y = y;
 		textControl.resizable = false;
@@ -75,8 +75,8 @@ class TextArea extends Label
 			initialized = true;
 		}
 
-		textControl._field.x = x - Std.int(HXP.camera.x);
-		textControl._field.y = y - Std.int(HXP.camera.y);
+		textControl._field.x = (x - Std.int(HXP.camera.x)) * HXP.screen.fullScaleX;
+		textControl._field.y = (y - Std.int(HXP.camera.y)) * HXP.screen.fullScaleY;
 
 		if (bg != null)
 		{
@@ -117,18 +117,6 @@ class TextArea extends Label
 		textControl._field.removeEventListener(FocusEvent.FOCUS_IN, onFocusInText);
 		textControl._field.removeEventListener(FocusEvent.FOCUS_OUT, onFocusOutText);
 		HXP.stage.removeChild(textControl._field);
-	}
-
-	override function set_x(value:Float):Float
-	{
-		if (textControl != null) textControl._field.x = value * HXP.screen.fullScaleX;
-		return super.set_x(value);
-	}
-
-	override function set_y(value:Float):Float
-	{
-		if (textControl != null) textControl._field.y = value * HXP.screen.fullScaleY;
-		return super.set_y(value);
 	}
 
 	var bg:SkinImage;
