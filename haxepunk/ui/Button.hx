@@ -199,7 +199,8 @@ class Button extends UIComponent
 		this.onExit = onExit;
 	}
 
-	override public function update():Void{
+	override public function update():Void
+	{
 		super.update();
 
 		if (hotkey != 0)

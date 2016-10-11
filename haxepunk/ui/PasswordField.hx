@@ -40,4 +40,3 @@ class PasswordField extends TextField
 		addGraphic(textControl);
 	}
 }
-

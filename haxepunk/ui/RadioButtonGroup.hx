@@ -1,6 +1,5 @@
 package haxepunk.ui;
 
-
 /**
  * Contains and controls a collection of grouped radio buttons.
  */

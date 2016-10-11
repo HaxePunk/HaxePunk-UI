@@ -337,25 +337,6 @@ class Panel extends UIComponent
 	function get_mouseX():Int return (_panel != null) ? _panel.mouseX:world.mouseX;
 	function get_mouseY():Int return (_panel != null) ? _panel.mouseY : world.mouseY;
 
-	/**
-	 * Return the top most UIComponent of the panel at a given point
-	 * @param	x X-Coordinate
-	 * @param	y Y-Coordinate
-	 * @return  top most UIComponent at the supplied point
-	 */
-	@:allow(haxepunk.ui)
-	function frontCollidePoint(x:Float, y:Float):UIComponent
-	{
-		var i:Int = _children.length - 1;
-		var c:UIComponent;
-				while (i > -1){
-			c = _children[i];
-			if (c.collidePoint(c.x, c.y, x, y))     return c;
-			--i;
-		}
-		return null;
-	}
-
 	var _scrolledWithEase:Bool = false;
 
 	static var point:Point = new Point();

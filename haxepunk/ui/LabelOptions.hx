@@ -2,7 +2,8 @@ package haxepunk.ui;
 
 import com.haxepunk.graphics.Text;
 
-typedef LabelOptions = {
+typedef LabelOptions =
+{
 	> TextOptions,
 	@:optional var x:Float;
 	@:optional var y:Float;

@@ -163,7 +163,7 @@ class LayoutGroup extends EntityList<Entity>
 					childrenHeight += spacing + member.height;
 
 				case Grid:
-					if (childrenWidth + member.width > width - paddingX*2)
+					if (childrenWidth + member.width > width - paddingX * 2)
 					{
 						// move to the next row
 						childrenWidth = 0;
