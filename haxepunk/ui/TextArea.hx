@@ -75,8 +75,10 @@ class TextArea extends Label
 			initialized = true;
 		}
 
-		textControl._field.x = (x - Std.int(HXP.camera.x)) * HXP.screen.fullScaleX;
-		textControl._field.y = (y - Std.int(HXP.camera.y)) * HXP.screen.fullScaleY;
+		textControl._field.x = HXP.screen.x + (x - Std.int(HXP.camera.x)) * HXP.screen.fullScaleX;
+		textControl._field.width = textControl.textWidth * HXP.screen.fullScaleX;
+		textControl._field.y = HXP.screen.y + (y - Std.int(HXP.camera.y)) * HXP.screen.fullScaleY;
+		textControl._field.height = textControl.textHeight * HXP.screen.fullScaleY;
 
 		if (bg != null)
 		{
