@@ -1,5 +1,6 @@
 import com.haxepunk.Scene;
 
+import com.haxepunk.HXP;
 import haxepunk.ui.Button;
 import haxepunk.ui.Label;
 import haxepunk.ui.PasswordField;
@@ -13,12 +14,14 @@ import haxepunk.ui.RadioButtonGroup;
 
 class MainScene extends Scene
 {
-	override public function begin()
+	public function new()
 	{
+		super();
+
 		var mouseManager = new MouseManager();
 		add(mouseManager);
 
-		var btn = new Button(0, 0, 256, 256, "BIG BUTTON", mouseManager);
+		var btn = new Button(0, 0, 256, 256, "BIG BUTTON", function() HXP.engine.pushScene(new PopupScene()), mouseManager);
 		add(btn);
 
 		var parentLayout = new LayoutGroup(LayoutType.Horizontal);
