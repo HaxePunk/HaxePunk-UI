@@ -1,6 +1,6 @@
-import com.haxepunk.Engine;
-import com.haxepunk.HXP;
-import com.haxepunk.screen.UniformScaleMode;
+import haxepunk.Engine;
+import haxepunk.HXP;
+import haxepunk.screen.UniformScaleMode;
 import haxepunk.ui.UI;
 
 

@@ -1,6 +1,6 @@
 package haxepunk.ui;
 
-import com.haxepunk.graphics.Text;
+import haxepunk.graphics.Text;
 import haxepunk.ui.TextField;
 
 import haxepunk.ui.skin.Skin;
@@ -8,7 +8,7 @@ import haxepunk.ui.skin.Skin;
 /**
  * A password field TextField.
  */
-@:access(com.haxepunk.graphics.Text)
+@:access(haxepunk.graphics.Text)
 class PasswordField extends TextField
 {
 	/**

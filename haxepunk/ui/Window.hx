@@ -1,8 +1,8 @@
 package haxepunk.ui;
 
-import com.haxepunk.Graphic;
-import com.haxepunk.graphics.Image;
-import com.haxepunk.utils.Input;
+import haxepunk.Graphic;
+import haxepunk.graphics.Image;
+import haxepunk.utils.Input;
 import haxepunk.ui.skin.Skin;
 
 /**

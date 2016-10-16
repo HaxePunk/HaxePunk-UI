@@ -1,8 +1,8 @@
 package haxepunk.ui.layout;
 
-import com.haxepunk.HXP;
-import com.haxepunk.Entity;
-import com.haxepunk.EntityList;
+import haxepunk.HXP;
+import haxepunk.Entity;
+import haxepunk.EntityList;
 import haxepunk.ui.layout.Layout;
 
 @:enum

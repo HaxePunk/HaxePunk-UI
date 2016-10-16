@@ -1,13 +1,13 @@
 package haxepunk.ui;
 
 import flash.geom.Point;
-import com.haxepunk.HXP;
-import com.haxepunk.Graphic;
-import com.haxepunk.Mask;
-import com.haxepunk.graphics.Graphiclist;
-import com.haxepunk.graphics.Image;
-import com.haxepunk.graphics.Text;
-import com.haxepunk.utils.Input;
+import haxepunk.HXP;
+import haxepunk.Graphic;
+import haxepunk.Mask;
+import haxepunk.graphics.Graphiclist;
+import haxepunk.graphics.Image;
+import haxepunk.graphics.Text;
+import haxepunk.input.Input;
 import haxepunk.ui.UIComponent;
 import haxepunk.ui.skin.SkinButtonElement;
 import haxepunk.ui.skin.Skin;

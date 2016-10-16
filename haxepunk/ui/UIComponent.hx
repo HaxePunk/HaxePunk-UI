@@ -2,10 +2,10 @@ package haxepunk.ui;
 
 import flash.display.BitmapData;
 import flash.geom.Point;
-import com.haxepunk.Entity;
-import com.haxepunk.HXP;
-import com.haxepunk.Graphic;
-import com.haxepunk.graphics.Image;
+import haxepunk.Entity;
+import haxepunk.HXP;
+import haxepunk.Graphic;
+import haxepunk.graphics.Image;
 import haxepunk.ui.skin.Skin;
 import haxepunk.ui.skin.SkinImage;
 

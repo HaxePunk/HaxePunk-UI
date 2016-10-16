@@ -1,6 +1,6 @@
 package haxepunk.ui;
 
-import com.haxepunk.graphics.Text;
+import haxepunk.graphics.Text;
 
 typedef LabelOptions =
 {

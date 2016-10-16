@@ -2,10 +2,10 @@ package haxepunk.ui.skins;
 
 import flash.display.BitmapData;
 import openfl.Assets;
-import com.haxepunk.HXP;
-import com.haxepunk.Graphic;
-import com.haxepunk.RenderMode;
-import com.haxepunk.graphics.atlas.AtlasData;
+import haxepunk.HXP;
+import haxepunk.Graphic;
+import haxepunk.RenderMode;
+import haxepunk.graphics.atlas.AtlasData;
 
 class NESSkin extends Default
 {

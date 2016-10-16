@@ -6,12 +6,12 @@ import flash.display.BitmapData;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 
-import com.haxepunk.HXP;
-import com.haxepunk.Graphic;
-import com.haxepunk.graphics.Graphiclist;
-import com.haxepunk.tweens.misc.MultiVarTween;
-import com.haxepunk.utils.Ease;
-
+import haxepunk.HXP;
+import haxepunk.Graphic;
+import haxepunk.graphics.Graphiclist;
+import haxepunk.tweens.misc.MultiVarTween;
+import haxepunk.utils.Ease;
+import haxepunk.utils.MathUtil;
 import haxepunk.ui.skin.Skin;
 
 /**
@@ -171,7 +171,7 @@ class Panel extends UIComponent
 		{
 			if (_scrolledWithEase)
 			{
-				var d:Float = HXP.distance(_targetX, _targetY, scrollX, scrollY);
+				var d:Float = MathUtil.distance(_targetX, _targetY, scrollX, scrollY);
 				var s:Float = d / _t;
 
 				point.x = _targetX - scrollX;
@@ -334,8 +334,8 @@ class Panel extends UIComponent
 		}
 	}
 
-	function get_mouseX():Int return (_panel != null) ? _panel.mouseX:world.mouseX;
-	function get_mouseY():Int return (_panel != null) ? _panel.mouseY : world.mouseY;
+	function get_mouseX():Int return (_panel != null) ? _panel.mouseX : scene.mouseX;
+	function get_mouseY():Int return (_panel != null) ? _panel.mouseY : scene.mouseY;
 
 	var _scrolledWithEase:Bool = false;
 

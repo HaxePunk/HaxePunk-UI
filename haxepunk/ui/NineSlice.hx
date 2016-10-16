@@ -4,10 +4,10 @@ import flash.display.BitmapData;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;
-import com.haxepunk.HXP;
-import com.haxepunk.RenderMode;
-import com.haxepunk.Graphic;
-import com.haxepunk.graphics.Image;
+import haxepunk.HXP;
+import haxepunk.RenderMode;
+import haxepunk.Graphic;
+import haxepunk.graphics.Image;
 
 /**
  * Image wrapper used for skinning Punk.UI components
@@ -16,6 +16,7 @@ class NineSlice extends Graphic
 {
 	public var width:Float;
 	public var height:Float;
+	public var clipRect:Rectangle;
 	public var smooth:Bool = false;
 
 	var source:ImageType;
@@ -45,7 +46,7 @@ class NineSlice extends Graphic
 		botL = getSegment(source, 0, h - bottomHeight, leftWidth, bottomHeight);
 		botC = getSegment(source, leftWidth, h - bottomHeight, w - leftWidth - rightWidth, bottomHeight);
 		botR = getSegment(source, w - rightWidth, h - bottomHeight, rightWidth, bottomHeight);
-		_clipRect.setTo(leftWidth, topHeight, w - rightWidth, h - bottomHeight);
+		_sliceRect.setTo(leftWidth, topHeight, w - rightWidth, h - bottomHeight);
 
 		width = w;
 		height = h;
@@ -69,11 +70,11 @@ class NineSlice extends Graphic
 	 */
 	function renderSegments(renderFunc:Image -> Void)
 	{
-		var leftWidth:Float = Std.int(_clipRect.left / HXP.screen.fullScaleX),
-			rightWidth:Float = Std.int((source.width - _clipRect.width) / HXP.screen.fullScaleX),
+		var leftWidth:Float = Std.int(_sliceRect.left / HXP.screen.fullScaleX),
+			rightWidth:Float = Std.int((source.width - _sliceRect.width) / HXP.screen.fullScaleX),
 			centerWidth:Float = Std.int(width - leftWidth - rightWidth);
-		var topHeight:Float = Std.int(_clipRect.top / HXP.screen.fullScaleY),
-			bottomHeight:Float = Std.int((source.height - _clipRect.height) / HXP.screen.fullScaleY),
+		var topHeight:Float = Std.int(_sliceRect.top / HXP.screen.fullScaleY),
+			bottomHeight:Float = Std.int((source.height - _sliceRect.height) / HXP.screen.fullScaleY),
 			centerHeight:Float = Std.int(height - topHeight - bottomHeight);
 
 		var leftX = 0, centerX = leftWidth, rightX = leftWidth + centerWidth,
@@ -123,7 +124,7 @@ class NineSlice extends Graphic
 	var botC:Image;
 	var botR:Image;
 
-	var _clipRect:Rectangle = new Rectangle();
+	var _sliceRect:Rectangle = new Rectangle();
 	var _rect:Rectangle = new Rectangle();
 	var _matrix:Matrix = new Matrix();
 }

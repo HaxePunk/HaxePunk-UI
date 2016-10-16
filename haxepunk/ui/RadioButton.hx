@@ -3,7 +3,7 @@ package haxepunk.ui;
 import haxepunk.ui.RadioButtonGroup;
 import haxepunk.ui.ToggleButton;
 
-import com.haxepunk.Graphic;
+import haxepunk.Graphic;
 
 import haxepunk.ui.skin.Skin;
 

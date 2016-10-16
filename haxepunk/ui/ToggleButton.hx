@@ -1,10 +1,10 @@
 package haxepunk.ui;
 
 import flash.text.TextFormatAlign;
-import com.haxepunk.Graphic;
-import com.haxepunk.graphics.Graphiclist;
-import com.haxepunk.graphics.Image;
-import com.haxepunk.graphics.Text;
+import haxepunk.Graphic;
+import haxepunk.graphics.Graphiclist;
+import haxepunk.graphics.Image;
+import haxepunk.graphics.Text;
 import haxepunk.ui.skin.Skin;
 import haxepunk.ui.skin.SkinImage;
 import haxepunk.ui.skin.SkinToggleButtonElement;

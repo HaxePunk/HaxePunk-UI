@@ -1,6 +1,6 @@
-import com.haxepunk.Scene;
+import haxepunk.Scene;
 
-import com.haxepunk.HXP;
+import haxepunk.HXP;
 import haxepunk.ui.Button;
 import haxepunk.ui.Label;
 import haxepunk.ui.PasswordField;

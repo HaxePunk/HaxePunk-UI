@@ -5,17 +5,17 @@ import flash.events.FocusEvent;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.text.TextFieldType;
-import com.haxepunk.HXP;
-import com.haxepunk.graphics.Text;
-import com.haxepunk.utils.Input;
-import com.haxepunk.utils.Key;
+import haxepunk.HXP;
+import haxepunk.graphics.Text;
+import haxepunk.utils.Input;
+import haxepunk.utils.Key;
 import haxepunk.ui.skin.Skin;
 import haxepunk.ui.skin.SkinImage;
 
 /**
  * A generic editable text field.
  */
-@:access(com.haxepunk.graphics.Text)
+@:access(haxepunk.graphics.Text)
 class TextArea extends Label
 {
 	/**

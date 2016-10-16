@@ -2,9 +2,9 @@ package haxepunk.ui;
 
 import flash.errors.Error;
 import flash.geom.Point;
-import com.haxepunk.HXP;
-import com.haxepunk.Entity;
-import com.haxepunk.utils.Input;
+import haxepunk.HXP;
+import haxepunk.Entity;
+import haxepunk.input.Input;
 import haxepunk.ui.UIComponent;
 
 /**
@@ -102,10 +102,10 @@ class MouseManager extends Entity
 
 		var collisions:Array<Entity> = _collisions;
 		// make sure the mouse is onscreen before checking for collisions
-		if (HXP.stage.mouseX > HXP.screen.x &&
-			HXP.stage.mouseY > HXP.screen.y &&
-			HXP.stage.mouseX < HXP.screen.x + HXP.screen.width &&
-			HXP.stage.mouseY < HXP.screen.y + HXP.screen.height)
+		if (HXP.stage.mouseX >= HXP.screen.x &&
+			HXP.stage.mouseY >= HXP.screen.y &&
+			HXP.stage.mouseX <= HXP.screen.x + HXP.screen.width &&
+			HXP.stage.mouseY <= HXP.screen.y + HXP.screen.height)
 		{
 			scene.collidePointInto(type, scene.mouseX, scene.mouseY, collisions);
 		}

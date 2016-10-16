@@ -1,14 +1,14 @@
 package haxepunk.ui;
 
 import flash.text.TextFormatAlign;
-import com.haxepunk.graphics.Text;
+import haxepunk.graphics.Text;
 import haxepunk.ui.UIComponent;
 import haxepunk.ui.skin.Skin;
 
 /**
  * A basic label component
  */
-@:access(com.haxepunk.graphics.Text)
+@:access(haxepunk.graphics.Text)
 class Label extends UIComponent
 {
 	public static function getTextFromLabelOptions(labelProperties:LabelOptions, text:String = "", ?width:Int, ?height:Int):Text

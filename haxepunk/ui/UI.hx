@@ -2,11 +2,10 @@ package haxepunk.ui;
 
 import haxepunk.ui.UIComponent;
 
-import com.haxepunk.Entity;
-import com.haxepunk.HXP;
-import com.haxepunk.Scene;
-import com.haxepunk.utils.Input;
-
+import haxepunk.Entity;
+import haxepunk.HXP;
+import haxepunk.Scene;
+import haxepunk.input.Input;
 import haxepunk.ui.skin.Skin;
 
 @:final class UI

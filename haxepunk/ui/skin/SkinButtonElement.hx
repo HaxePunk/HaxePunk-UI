@@ -1,6 +1,6 @@
 package haxepunk.ui.skin;
 
-import com.haxepunk.graphics.Text;
+import haxepunk.graphics.Text;
 import haxepunk.ui.skin.SkinHasLabelElement;
 import haxepunk.ui.skin.SkinImage;
 

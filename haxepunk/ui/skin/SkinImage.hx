@@ -1,6 +1,6 @@
 package haxepunk.ui.skin;
 
-import com.haxepunk.Graphic;
+import haxepunk.Graphic;
 
 /**
  * Image wrapper used for skinning Punk.UI components
