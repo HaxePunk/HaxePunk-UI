@@ -100,10 +100,10 @@ class LayoutGroup extends EntityList<Entity>
 				totalScaleY = HXP.screen.fullScaleY;
 
 			// topmost LayoutGroup should fill the screen
-			x = HXP.screen.x;
-			y = HXP.screen.y;
-			parentWidth = HXP.screen.width;
-			parentHeight = HXP.screen.height;
+			x = -Math.min(0, HXP.screen.x) / totalScaleX - HXP.screen.offsetX;
+			y = -Math.min(0, HXP.screen.y) / totalScaleY - HXP.screen.offsetY;
+			parentWidth = HXP.screen.width / totalScaleX - (x * 2);
+			parentHeight = HXP.screen.height / totalScaleY - (y * 2);
 		}
 
 		if (fillParent)

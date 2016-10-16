@@ -2,6 +2,7 @@ package haxepunk.ui;
 
 import flash.errors.Error;
 import flash.geom.Point;
+import com.haxepunk.HXP;
 import com.haxepunk.Entity;
 import com.haxepunk.utils.Input;
 import haxepunk.ui.UIComponent;
@@ -100,7 +101,14 @@ class MouseManager extends Entity
 		super.update();
 
 		var collisions:Array<Entity> = _collisions;
-		scene.collidePointInto(type, scene.mouseX, scene.mouseY, collisions);
+		// make sure the mouse is onscreen before checking for collisions
+		if (HXP.stage.mouseX > HXP.screen.x &&
+			HXP.stage.mouseY > HXP.screen.y &&
+			HXP.stage.mouseX < HXP.screen.x + HXP.screen.width &&
+			HXP.stage.mouseY < HXP.screen.y + HXP.screen.height)
+		{
+			scene.collidePointInto(type, scene.mouseX, scene.mouseY, collisions);
+		}
 
 		for (i in 0 ... collisions.length - 1)
 		{
