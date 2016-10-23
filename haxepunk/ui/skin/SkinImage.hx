@@ -1,6 +1,7 @@
 package haxepunk.ui.skin;
 
 import haxepunk.Graphic;
+import haxepunk.graphics.NineSlice;
 
 /**
  * Image wrapper used for skinning Punk.UI components
@@ -30,10 +31,10 @@ class SkinImage extends NineSlice
 
 	public function clone():SkinImage
 	{
-		var leftWidth = Std.int(_clipRect.x),
-			rightWidth = Std.int(source.width - _clipRect.width),
-			topHeight = Std.int(_clipRect.y),
-			bottomHeight = Std.int(source.height - _clipRect.height);
+		var leftWidth = Std.int(_sliceRect.x),
+			rightWidth = Std.int(source.width - _sliceRect.width),
+			topHeight = Std.int(_sliceRect.y),
+			bottomHeight = Std.int(source.height - _sliceRect.height);
 		return new SkinImage(source, nineSlice, leftWidth, rightWidth, topHeight, bottomHeight);
 	}
 }
