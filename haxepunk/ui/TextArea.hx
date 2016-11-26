@@ -42,8 +42,12 @@ class TextArea extends Label
 		textControl._field.selectable = true;
 		textControl._field.type = TextFieldType.INPUT;
 		textControl._field.multiline = true;
-		textControl._field.x = x;
-		textControl._field.y = y;
+		textControl._field.x = HXP.screen.x + (x - Std.int(HXP.camera.x)) * HXP.screen.fullScaleX;
+		textControl._field.scaleX = HXP.screen.fullScaleX;
+		textControl._width = Math.ceil(width);
+		textControl._field.y = HXP.screen.y + (y - Std.int(HXP.camera.y)) * HXP.screen.fullScaleY;
+		textControl._field.scaleY = HXP.screen.fullScaleY;
+		textControl._height = Math.ceil(height);
 		textControl.resizable = false;
 		textControl.wordWrap = true;
 		textControl._field.alpha = 0;
@@ -76,9 +80,11 @@ class TextArea extends Label
 		}
 
 		textControl._field.x = HXP.screen.x + (x - Std.int(HXP.camera.x)) * HXP.screen.fullScaleX;
-		textControl._field.width = textControl.textWidth * HXP.screen.fullScaleX;
+		textControl._field.scaleX = HXP.screen.fullScaleX;
+		textControl._width = Math.ceil(width);
 		textControl._field.y = HXP.screen.y + (y - Std.int(HXP.camera.y)) * HXP.screen.fullScaleY;
-		textControl._field.height = textControl.textHeight * HXP.screen.fullScaleY;
+		textControl._field.scaleY = HXP.screen.fullScaleY;
+		textControl._height = Math.ceil(height);
 
 		if (bg != null)
 		{
