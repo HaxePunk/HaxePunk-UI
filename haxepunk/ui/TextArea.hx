@@ -91,6 +91,11 @@ class TextArea extends Label
 			bg.width = width;
 			bg.height = height;
 		}
+		
+		if (updateTextBuffer)
+		{
+			textControl.updateTextBuffer();
+		}
 	}
 
 	function onFocusInText(e:FocusEvent):Void
