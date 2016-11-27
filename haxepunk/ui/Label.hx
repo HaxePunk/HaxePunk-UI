@@ -15,7 +15,7 @@ class Label extends UIComponent
 	{
 		if (labelProperties == null) labelProperties = {};
 		var labelWidth:Int = width == null ? 0 : width,
-			labelAlign:TextFormatAlign = TextFormatAlign.CENTER,
+			labelAlign = TextFormatAlign.CENTER,
 			labelX:Float = 0,
 			labelY:Float = 0;
 		if (Reflect.hasField(labelProperties, "width")) labelWidth = Std.int(labelProperties.width);
