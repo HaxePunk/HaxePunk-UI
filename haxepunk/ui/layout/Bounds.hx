@@ -10,7 +10,7 @@ typedef BoundsData =
  * Represents a range of acceptable values. Use the clamp method to constrain a
  * value to fall between the min and max.
  */
-@:expose(min, max)
+@:forward(min, max)
 abstract Bounds(BoundsData)
 {
 	public inline function new(?min:Float, ?max:Float)
